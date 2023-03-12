@@ -2,6 +2,10 @@ import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild }
 import { ICard } from 'src/interface/page';
 import Genres from '../../../../mockData/genres.json';
 
+/**
+ * @title Верстка карточек с фильмами (Этап 1)
+ */
+
 @Component({
     selector: 'app-card',
     templateUrl: './card.component.html',

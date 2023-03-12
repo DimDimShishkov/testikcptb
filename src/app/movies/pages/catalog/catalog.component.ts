@@ -5,6 +5,10 @@ import Cards from '../../../../mockData/data.json';
 import Genres from '../../../../mockData/genres.json';
 import { ModalComponent } from '../../components/modal/modal.component';
 
+/**
+ * @title Итоговый компонент с Фильтром и Инпутом (Этап 3)
+ */
+
 @Component({
     templateUrl: './catalog.component.html',
     styleUrls: ['./catalog.component.scss'],
@@ -54,6 +58,7 @@ export class CatalogComponent implements DoCheck {
                     isLiked: card.id === this.favoriteCardID,
                     likeToggleEvent: () => this.likeToggleHandler(cardID),
                 },
+                maxWidth: '756px',
             });
         }
     }

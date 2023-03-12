@@ -3,6 +3,10 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ICard, IData } from 'src/interface/page';
 import Genres from '../../../../mockData/genres.json';
 
+/**
+ * @title Диалоговое окно с фильмом (Этап 2)
+ */
+
 @Component({
     selector: 'app-modal',
     templateUrl: './modal.component.html',
