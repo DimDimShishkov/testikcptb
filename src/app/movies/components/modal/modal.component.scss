@@ -13,6 +13,12 @@
     box-shadow: 0px 0px 15px rgba(29, 24, 56, 0.1);
     border-radius: 10px;
 
+    @media screen and (max-width: 600px) {
+        & {
+            flex-direction: column;
+        }
+    }
+
     &__image {
         width: 150px;
         height: 225px;
@@ -26,6 +32,7 @@
         padding: 0px;
         gap: 10px;
         height: 100%;
+        min-height: 225px;
     }
 
     &__heading {

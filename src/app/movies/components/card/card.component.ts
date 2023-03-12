@@ -1,6 +1,4 @@
-import { ViewChild } from '@angular/core';
-import { ElementRef } from '@angular/core';
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ICard } from 'src/interface/page';
 import Genres from '../../../../mockData/genres.json';
 
@@ -11,45 +9,26 @@ import Genres from '../../../../mockData/genres.json';
 })
 export class CardComponent implements OnInit {
     @Input() card: ICard;
-    @Input() favoriteCard: ICard;
-    @Output() likeToggleHandler = new EventEmitter<ICard>();
-    @Output() openedCard = new EventEmitter<ICard>();
+    @Input() isLiked: boolean;
+    @Output() likeToggleEvent = new EventEmitter<number>();
+    @Output() openCardEvent = new EventEmitter<number>();
     @ViewChild('likeButton') likeButton: ElementRef;
 
     public genreArr: string = '';
-    // public isLiked: boolean = false;
-
-    get isLiked() {
-        return this.favoriteCard.id === this.card.id;
-    }
 
     ngOnInit() {
-        console.log(this.card);
         this.genreArr = Genres.filter((n) => this.card?.genre.indexOf(n.id) !== -1)
             .map((item) => item.name)
             .join(', ');
-        // likeToggleHandler прописать в компонент каталога
-        // likeToggleEvent прописать в здесь
-        // likeToggleEvent прописать в модалку
-        // isLiked = this.favoriteCard?.id === this.card?.id;
-        // this.isLiked = localStorage.getItem('selectedCard') === `${this.card.id}`;
     }
-    likeToggleEvent(event: Event) {
-        event.stopPropagation();
-        this.likeButton.nativeElement.focus();
-        this.likeToggleHandler.emit(this.card);
-    }
-    // ngDoCheck() {
-    //   this.isLiked = localStorage.getItem('selectedCard') === `${this.card.id}`;
-    // }
-    // посмотреть как переписать на event.target
+
     like(event: Event) {
         event.stopPropagation();
         this.likeButton.nativeElement.focus();
-        // this.selectedCard.emit(this.card);
+        this.likeToggleEvent.emit(this.card.id);
     }
 
     openCard() {
-        this.openedCard.emit(this.card);
+        this.openCardEvent.emit(this.card.id);
     }
 }

@@ -16,7 +16,6 @@
                 [(ngModel)]="selectedName"
                 (input)="selectName(selectedName)"
             />
-            <!-- (input)="selectName($event)" -->
         </mat-form-field>
     </div>
 
@@ -25,8 +24,9 @@
             <app-card
                 *ngFor="let card of cardsArr; let i = index"
                 [card]="cardsArr[i]"
-                (likeToggleEvent)="likeToggleHandler(card)"
-                (openedCard)="openCard(card)"
+                [isLiked]="card.id === favoriteCardID"
+                (likeToggleEvent)="likeToggleHandler($event)"
+                (openCardEvent)="openCardHandler($event)"
             ></app-card>
         </ng-container>
 
@@ -38,11 +38,12 @@
     <h2 class="catalog__heading">Самый лучший фильм</h2>
     <div class="catalog__list">
         <ng-container *ngIf="favoriteCard; else templateB">
-            <!--          <app-card
+            <app-card
                 [card]="favoriteCard"
-                (selectedCard)="selectCard(favoriteCard)"
-                (openedCard)="openCard(favoriteCard)"
-            ></app-card> -->
+                [isLiked]="true"
+                (likeToggleEvent)="likeToggleHandler($event)"
+                (openCardEvent)="openCardHandler($event)"
+            ></app-card>
         </ng-container>
 
         <ng-template #templateB>

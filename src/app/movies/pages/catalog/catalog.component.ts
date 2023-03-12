@@ -1,5 +1,4 @@
-import { DoCheck } from '@angular/core';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, DoCheck } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ICard, IGenre } from 'src/interface/page';
 import Cards from '../../../../mockData/data.json';
@@ -11,32 +10,20 @@ import { ModalComponent } from '../../components/modal/modal.component';
     styleUrls: ['./catalog.component.scss'],
 })
 export class CatalogComponent implements DoCheck {
-    @Output() selectionChange: EventEmitter<number>;
-
     public cardsArr: ICard[] = Cards;
     public genreArr: IGenre[] = Genres;
-    public favoriteCard: ICard;
+    public favoriteCard: ICard | undefined;
+    public favoriteCardID: number = 0;
     public selectedGenre: number = 0;
-    public favoriteIDCard: number = 0;
     public selectedName: string = '';
 
     constructor(public dialog: MatDialog) {}
 
-    /*    ngOnInit() {
-        const cardID = +(localStorage.getItem('selectedCard') || 0);
-        const card = this.cardsArr.find((card) => card.id === cardID);
-        if (card) {
-            this.favoriteCard = card;
-        }
-    } */
-
     // переделать под RxJS и подпиской на localStorage
-    // во всех местах где лайкается карточка прописать дополнительное свойство только в каталог.ts
-    // вынести в одну функцию и вызывать здесь
-    // из инита убрать
     ngDoCheck() {
         const cardID = +(localStorage.getItem('selectedCard') || 0);
         this.likeCheckHandler(cardID);
+        this.favoriteCardID = cardID;
     }
 
     likeCheckHandler(cardID: number) {
@@ -46,25 +33,29 @@ export class CatalogComponent implements DoCheck {
         }
     }
 
-    likeToggleHandler(card: ICard) {
-        const cardID = +(localStorage.getItem('selectedCard') || 0);
-        this.likeCheckHandler(cardID);
-        /*  const cardID = +(localStorage.getItem('selectedCard') || 0);
-        const chosenCard = this.cardsArr.find((card) => card.id === cardID);
-        if (chosenCard) {
-            this.favoriteCard = chosenCard;
-        } */
-        if (cardID === card.id) {
+    likeToggleHandler(cardID: number) {
+        if (cardID === this.favoriteCardID) {
             localStorage.removeItem('selectedCard');
+            this.favoriteCardID = 0;
+            this.favoriteCard = undefined;
         } else {
-            localStorage.setItem('selectedCard', `${card.id}`);
+            localStorage.setItem('selectedCard', `${cardID}`);
+            this.favoriteCardID = cardID;
+            this.likeCheckHandler(cardID);
         }
     }
 
-    openCard(card: ICard) {
-        this.dialog.open(ModalComponent, {
-            data: card,
-        });
+    openCardHandler(cardID: number) {
+        const card = this.cardsArr.find((card) => card.id === cardID);
+        if (card) {
+            this.dialog.open(ModalComponent, {
+                data: {
+                    card: card,
+                    isLiked: card.id === this.favoriteCardID,
+                    likeToggleEvent: () => this.likeToggleHandler(cardID),
+                },
+            });
+        }
     }
 
     selectGenre(genre: number) {
