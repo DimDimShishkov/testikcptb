@@ -1,0 +1,93 @@
+.catalog {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  position: relative;
+  padding: 37px 25px 40px;
+
+  &__heading {
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 22px;
+    margin: 0;
+    color: #000000;
+
+    &:not(:first-child) {
+      margin-top: 40px;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: row;
+    gap: 15px 10px;
+    flex-wrap: wrap;
+  }
+
+  &__subheading {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 20px;
+    color: #797979;
+    margin: 0;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+}
+
+/* :host {
+  display: flex;
+  flex-direction: row;
+} */
+/*     &__select {
+      color: #000000;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 16px;
+      gap: 10px;
+      width: 212px;
+      height: 56px;
+      border: 1px solid rgba(121, 121, 121, 0.5);
+      border-radius: 6px;
+
+      &:optional {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 14px;
+        color: #797979;
+        margin: 0;
+      }
+    }
+
+    &__input {
+      padding: 10px 16px;
+      gap: 10px;
+      width: 212px;
+      height: 56px;
+      border: 1px solid rgba(121, 121, 121, 0.5);
+      border-radius: 6px;
+      box-sizing: border-box;
+
+      &:placeholder-shown {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 14px;
+        color: #797979;
+        color: red;
+      }
+    } */

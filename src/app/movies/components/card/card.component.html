@@ -1,0 +1,9 @@
+<div class="card" (click)="openCard()">
+    <img src="assets/films/{{ card.id }}.jpeg" [alt]="card.name" class="card__image" />
+    <h3 class="card__heading">{{ card.name }}</h3>
+    <h6 class="card__subheading">{{ genreArr }}</h6>
+    <h6 class="card__subheading">{{ card.year }}</h6>
+    <button #likeButton class="card__button" (click)="likeToggleEvent($event)">
+        <span class="card__like" [ngClass]="{ card__like_active: isLiked }"></span>
+    </button>
+</div>

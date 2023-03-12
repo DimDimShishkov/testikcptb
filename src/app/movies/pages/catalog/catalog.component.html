@@ -1,0 +1,52 @@
+<div class="catalog">
+    <h2 class="catalog__heading">Популярные фильмы</h2>
+
+    <div class="catalog__form">
+        <mat-form-field appearance="outline">
+            <mat-select name="genre" matNativeControl (selectionChange)="selectGenre($event.value)" placeholder="Выберите жанр">
+                <mat-option *ngFor="let genre of genreArr" [value]="genre.id">{{ genre.name }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <input
+                matInput
+                type="text"
+                placeholder="Введите название"
+                [(ngModel)]="selectedName"
+                (input)="selectName(selectedName)"
+            />
+            <!-- (input)="selectName($event)" -->
+        </mat-form-field>
+    </div>
+
+    <div class="catalog__list">
+        <ng-container *ngIf="cardsArr.length; else templateA">
+            <app-card
+                *ngFor="let card of cardsArr; let i = index"
+                [card]="cardsArr[i]"
+                (likeToggleEvent)="likeToggleHandler(card)"
+                (openedCard)="openCard(card)"
+            ></app-card>
+        </ng-container>
+
+        <ng-template #templateA>
+            <p class="catalog__subheading">Ничего не найдено</p>
+        </ng-template>
+    </div>
+
+    <h2 class="catalog__heading">Самый лучший фильм</h2>
+    <div class="catalog__list">
+        <ng-container *ngIf="favoriteCard; else templateB">
+            <!--          <app-card
+                [card]="favoriteCard"
+                (selectedCard)="selectCard(favoriteCard)"
+                (openedCard)="openCard(favoriteCard)"
+            ></app-card> -->
+        </ng-container>
+
+        <ng-template #templateB>
+            <p class="catalog__subheading">Лучший фильм еще не выбран</p>
+        </ng-template>
+    </div>
+</div>

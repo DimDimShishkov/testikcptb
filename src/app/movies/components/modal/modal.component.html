@@ -1,0 +1,19 @@
+<div mat-dialog-content class="modal">
+  <img
+    src="assets/films/{{ data.id }}.jpeg"
+    [alt]="data.name"
+    class="modal__image"
+  />
+  <div class="modal__container">
+    <h2 class="modal__heading">{{ data.name }}</h2>
+    <h6 class="modal__subheading">{{ genreArr }}</h6>
+    <h6 class="modal__subheading">{{ data.year }}</h6>
+    <h6 class="modal__subheading">{{ data.description }}</h6>
+    <div class="modal__buttons">
+      <button mat-button color="{{ buttonClass }}" (click)="like()">
+        {{ buttonText }}
+      </button>
+      <button mat-button color="accent" mat-dialog-close>Закрыть</button>
+    </div>
+  </div>
+</div>

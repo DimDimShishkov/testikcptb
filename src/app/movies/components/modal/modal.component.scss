@@ -1,0 +1,62 @@
+@import 'variables';
+
+.modal {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 15px 20px;
+    gap: 20px;
+    max-width: 756px;
+    min-height: 255px;
+    box-sizing: border-box;
+    background: #ffffff;
+    box-shadow: 0px 0px 15px rgba(29, 24, 56, 0.1);
+    border-radius: 10px;
+
+    &__image {
+        width: 150px;
+        height: 225px;
+        border-radius: 5px;
+    }
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0px;
+        gap: 10px;
+        height: 100%;
+    }
+
+    &__heading {
+        margin: 0;
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 16px;
+        display: flex;
+        align-items: center;
+        color: $main-black;
+    }
+
+    &__subheading {
+        margin: 0;
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 14px;
+        display: flex;
+        align-items: center;
+        color: $main-black;
+    }
+
+    &__buttons {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        margin-top: auto;
+        margin-left: auto;
+    }
+}

@@ -1,0 +1,92 @@
+@import "_variables";
+
+.card {
+  font-family: "Montserrat";
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 15px 20px;
+  gap: 10px;
+  width: 190px;
+  height: 400px;
+  box-sizing: border-box;
+  background: #ffffff;
+  box-shadow: 0px 0px 15px rgba(29, 24, 56, 0.1);
+  border-radius: 10px;
+  position: relative;
+
+  &__image {
+    width: 100%;
+    height: 225px;
+    background: #f4f4f4;
+    border-radius: 5px;
+  }
+
+  &__heading {
+    margin: 0;
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    color: $main-black;
+  }
+
+  &__subheading {
+    margin: 0;
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    display: flex;
+    align-items: center;
+    color: $main-black;
+  }
+
+  &__button {
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    display: none;
+    width: 48px;
+    height: 48px;
+    border: none;
+    margin: auto 0 0 auto;
+    background: none;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  &__button:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  &:hover .card__button {
+    display: flex;
+  }
+
+  &__like {
+    background: url(/assets/like.svg) center no-repeat;
+    width: 20px;
+    height: 19px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+
+    &_active {
+      background: url(/assets/like_active.svg) center no-repeat;
+      background-size: 20px;
+      width: 20px;
+      height: 19px;
+    }
+  }
+}
